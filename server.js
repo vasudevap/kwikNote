@@ -23,7 +23,7 @@ app.use(express.static('public'));
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public/index.html')));
 app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, 'public/notes.html')));
 // Create Express.js GET routes for '*' endpoint (any not explicitly defined above)
-app.get('/routes', (req, res) => res.sendFile(path.join(__dirname, 'public/routes.html')));
+app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'public/routes.html')));
 
 
 //
