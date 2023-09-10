@@ -4,12 +4,16 @@ let saveNoteBtn;
 let newNoteBtn;
 let noteList;
 
-if (window.location.pathname === '/notes') {
+console.log("index.js: 7: "+window.location.pathname);
+if (window.location.pathname === '/notes.html') {
+  console.log("setting document elements here");
   noteTitle = document.querySelector('.note-title');
   noteText = document.querySelector('.note-textarea');
   saveNoteBtn = document.querySelector('.save-note');
   newNoteBtn = document.querySelector('.new-note');
   noteList = document.querySelectorAll('.list-container .list-group');
+
+  console.log(saveNoteBtn);
 }
 
 // Show an element
@@ -109,6 +113,7 @@ const handleNewNoteView = (e) => {
 };
 
 const handleRenderSaveBtn = () => {
+  console.log("handling save button now "+noteTitle.value+" "+noteText.value);
   if (!noteTitle.value.trim() || !noteText.value.trim()) {
     hide(saveNoteBtn);
   } else {
