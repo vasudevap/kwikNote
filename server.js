@@ -5,6 +5,9 @@ const express = require('express');
 // Import built-in Node.js package 'path' to resolve path of files that are located on the server
 const path = require('path');
 
+// Define notes 
+const notes = require('./db/db.json');
+
 // Initialize an instance of Express.js
 const app = express();
 
@@ -13,9 +16,9 @@ const PORT = 3001;
 
 // SETUP MIDDLEWARE - API ROUTE
 // Import route to API
-const api = require('./routes/index');
+// const api = require('./routes/index');
 // route any calls to the '/api' resource to index.js
-app.use('/api', api);
+// app.use('/api', api);
 
 // SETUP STATIC MIDDLEWARE - PUBLIC FOLDER
 // route any calls not to the '/api' resource to public folder
@@ -25,6 +28,16 @@ app.use(express.static('public'));
 // Create Express.js GET routes for default '/' and '/notes' endpoints
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/index.html'));
+});
+app.get('/api/notes', (req, res) => {
+    // res.sendFile(path.join(__dirname, 'public/notes.html'));
+    res.json(notes);
+    // .then((data) => res.json(JSON.parse(data)));
+});
+app.post('/api/notes', (req, res) => {
+    // res.sendFile(path.join(__dirname, 'public/notes.html'));
+    res.send(req.body);
+    console.log(JSON.parse(req.body));
 });
 app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/notes.html'));

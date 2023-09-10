@@ -35,7 +35,9 @@ const getNotes = () =>
     headers: {
       'Content-Type': 'application/json',
     },
-  });// PVVVVVVVV: NEED TO ADD .then HERE TO DO SOMETHING W RES
+  })
+  .then((res)=>res.json()) // PV added then to handle response
+  .then((data) => data);
 
 const saveNote = (note) =>
   fetch('/api/notes', {
