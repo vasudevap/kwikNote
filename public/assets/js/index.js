@@ -35,7 +35,7 @@ const getNotes = () =>
     headers: {
       'Content-Type': 'application/json',
     },
-  });
+  });// PVVVVVVVV: NEED TO ADD .then HERE TO DO SOMETHING W RES
 
 const saveNote = (note) =>
   fetch('/api/notes', {
@@ -44,7 +44,7 @@ const saveNote = (note) =>
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(note),
-  });
+  });// PVVVVVVVV: NEED TO ADD .then HERE TO DO SOMETHING W RES
 
 const deleteNote = (id) =>
   fetch(`/api/notes/${id}`, {
@@ -52,7 +52,7 @@ const deleteNote = (id) =>
     headers: {
       'Content-Type': 'application/json',
     },
-  });
+  });// PVVVVVVVV: NEED TO ADD .then HERE TO DO SOMETHING W RES
 
 const renderActiveNote = () => {
   hide(saveNoteBtn);
