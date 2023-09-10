@@ -35,6 +35,13 @@ const getNotes = () =>
     headers: {
       'Content-Type': 'application/json',
     },
+  })
+  .then((res)=>{
+    console.log('received answer');
+    console.log(res.json()); // PV added then to handle response
+  })
+  .then((data) => {
+    console.log(data);
   });
 
 const saveNote = (note) =>
@@ -44,7 +51,7 @@ const saveNote = (note) =>
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(note),
-  });
+  });// PVVVVVVVV: NEED TO ADD .then HERE TO DO SOMETHING W RES
 
 const deleteNote = (id) =>
   fetch(`/api/notes/${id}`, {
@@ -52,7 +59,7 @@ const deleteNote = (id) =>
     headers: {
       'Content-Type': 'application/json',
     },
-  });
+  });// PVVVVVVVV: NEED TO ADD .then HERE TO DO SOMETHING W RES
 
 const renderActiveNote = () => {
   hide(saveNoteBtn);
@@ -123,6 +130,8 @@ const handleRenderSaveBtn = () => {
 
 // Render the list of note titles
 const renderNoteList = async (notes) => {
+
+  console.log("in rendernotelist");
   let jsonNotes = await notes.json();
   if (window.location.pathname === '/notes') {
     noteList.forEach((el) => (el.innerHTML = ''));
@@ -176,9 +185,13 @@ const renderNoteList = async (notes) => {
 };
 
 // Gets notes from the db and renders them to the sidebar
-const getAndRenderNotes = () => getNotes().then(renderNoteList);
+const getAndRenderNotes = () => {
+  console.log('in render notes');
+  getNotes().then(renderNoteList)
+};
 
 if (window.location.pathname === '/notes') {
+  console.log('in notes')
   saveNoteBtn.addEventListener('click', handleNoteSave);
   newNoteBtn.addEventListener('click', handleNewNoteView);
   noteTitle.addEventListener('keyup', handleRenderSaveBtn);
