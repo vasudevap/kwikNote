@@ -62,6 +62,7 @@ const renderActiveNote = () => {
   hide(saveNoteBtn);
 
   if (activeNote.id) {
+    console.log(activeNote.id)
     noteTitle.setAttribute('readonly', true);
     noteText.setAttribute('readonly', true);
     noteTitle.value = activeNote.title;
@@ -110,19 +111,20 @@ const handleNoteView = (e) => {
   renderActiveNote();
 };
 
-// Sets the activeNote to and empty object and allows the user to enter a new note
+// Sets the activeNote to an empty object and allows the user to enter a new note
 const handleNewNoteView = (e) => {
   activeNote = {};
   renderActiveNote();
 };
 
 const handleRenderSaveBtn = () => {
-  console.log("handling save button now " + noteTitle.value + " " + noteText.value);
-  if (!noteTitle.value.trim() || !noteText.value.trim()) {
-    hide(saveNoteBtn);
-  } else {
+
+  if (noteTitle.value.trim() || noteText.value.trim()) {
     show(saveNoteBtn);
+  } else {
+    hide(saveNoteBtn);
   }
+  console.log("handleRenderSaveBtn: "+(!noteTitle.value.trim() || !noteText.value.trim()));
 };
 
 // Render the list of note titles
@@ -136,7 +138,6 @@ const renderNoteList = (notes) => {
   if (window.location.pathname === '/notes') {
     noteList.forEach((el) => (el.innerHTML = ''));
   }
-  console.log(jsonNotes);
 
   let noteListItems = [];
 
@@ -173,28 +174,19 @@ const renderNoteList = (notes) => {
   if (jsonNotes.length === 0) {
     console.log("in rendernotelist -> notes length is 0");
     noteListItems.push(createLi('No saved Notes', false));
-  } 
+  }
 
   jsonNotes.forEach((note) => {
     const li = createLi(note.title);
-    
+
     li.dataset.note = JSON.stringify(note);
-    
+
     noteListItems.push(li);
   });
-  console.log(window.location.pathname);
 
   if (window.location.pathname === '/notes.html') {
-    console.log(noteListItems);
-    console.log(noteList);
-
-
     noteListItems.forEach((note) => noteList[0].append(note));
-  
-    console.log(noteList);
-
   }
-  console.log(noteList);
 
 };
 
@@ -203,8 +195,10 @@ const getAndRenderNotes = () => {
   getNotes().then(renderNoteList);
 };
 
-if (window.location.pathname === '/notes') {
-  console.log('in notes')
+  // newNoteBtn = document.querySelector('.new-note');
+  // noteList = document.querySelectorAll('.list-container .list-group');
+
+if (window.location.pathname === '/notes.html') {
   saveNoteBtn.addEventListener('click', handleNoteSave);
   newNoteBtn.addEventListener('click', handleNewNoteView);
   noteTitle.addEventListener('keyup', handleRenderSaveBtn);
