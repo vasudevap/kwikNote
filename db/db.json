@@ -4,71 +4,7 @@
         "text": "Test text"
     },
     {
-        "title": "Test 3 title",
-        "text": "Test 3 text"
-    },
-    {
-        "title": "Test 2 title",
-        "text": "Test 2 text"
-    },
-    {
-        "title": "Test 8 title",
-        "text": "Test 8 text"
-    },
-    {
-        "title": "Test 48 title",
-        "text": "Test 8sd text"
-    },
-    {
-        "title": "",
-        "text": "thw save button"
-    },
-    {
-        "title": "n",
-        "text": ""
-    },
-    {
-        "title": "asdfsdfd",
-        "text": "asdsdfasdasdf"
-    },
-    {
-        "title": "e",
-        "text": "e"
-    },
-    {
-        "title": "d",
-        "text": "d"
-    },
-    {
-        "title": "g",
-        "text": "g"
-    },
-    {
-        "title": "xc",
-        "text": "c"
-    },
-    {
-        "title": "ffg",
-        "text": "ssddd"
-    },
-    {
-        "title": "dfdf",
-        "text": "dfdfdfff"
-    },
-    {
-        "title": "this note2",
-        "text": "is a new one for saving"
-    },
-    {
-        "title": "sdf",
-        "text": "ssdfff"
-    },
-    {
-        "title": "Test 8s title",
-        "text": "Test 8 texdddt"
-    },
-    {
-        "title": "Test 48 titles",
-        "text": "Test 8sd text"
+        "title": "this should not be",
+        "text": "undefined in this way!"
     }
 ]
