@@ -48,7 +48,7 @@ const saveNote = (note) =>
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(note),
-  });// PVVVVVVVV: NEED TO ADD .then HERE TO DO SOMETHING W RES
+  }); // .then for promise is handled by handleNoteSave
 
 const deleteNote = (id) =>
   fetch(`api/notes/${id}`, {
@@ -59,20 +59,15 @@ const deleteNote = (id) =>
   });// PVVVVVVVV: NEED TO ADD .then HERE TO DO SOMETHING W RES
 
 const renderActiveNote = () => {
+
+  // when the note is clicked on in the sidebar
+  // hide the save button since we're retrieving 
+  // a saved note
   hide(saveNoteBtn);
 
-  if (activeNote.id) {
-    console.log(activeNote.id)
-    noteTitle.setAttribute('readonly', true);
-    noteText.setAttribute('readonly', true);
-    noteTitle.value = activeNote.title;
-    noteText.value = activeNote.text;
-  } else {
-    noteTitle.removeAttribute('readonly');
-    noteText.removeAttribute('readonly');
-    noteTitle.value = '';
-    noteText.value = '';
-  }
+  noteTitle.value = activeNote.title;
+  noteText.value = activeNote.text;
+
 };
 
 // save the active note 
@@ -109,6 +104,11 @@ const handleNoteDelete = (e) => {
 // Sets the activeNote and displays it
 const handleNoteView = (e) => {
   e.preventDefault();
+  console.log("in handle note view");
+  console.log(e);
+  console.log(e.target);
+  console.log(e.target.parentElement);
+
   activeNote = JSON.parse(e.target.parentElement.getAttribute('data-note'));
   renderActiveNote();
 };
@@ -130,20 +130,19 @@ const handleRenderSaveBtn = () => {
 };
 
 // Render the list of note titles
-// const renderNoteList = async (notes) => {
-// let jsonNotes = await notes.json();
+const renderNoteList = async (notes) => {
 
-const renderNoteList = (notes) => {
+  let jsonNotes = await notes;
 
-  let jsonNotes = notes;
-
+  // clear the sidebar of any visible notes
   if (window.location.pathname === '/notes.html') {
     noteList.forEach((el) => (el.innerHTML = ''));
   }
 
+  // start with empty notelist
   let noteListItems = [];
 
-  // Returns HTML element with or without a delete button
+  // Returns HTML element with a delete button
   const createLi = (text, delBtn = true) => {
     const liEl = document.createElement('li');
     liEl.classList.add('list-group-item');
@@ -152,7 +151,6 @@ const renderNoteList = (notes) => {
     spanEl.classList.add('list-item-title');
     spanEl.innerText = text;
     spanEl.addEventListener('click', handleNoteView);
-
 
     liEl.append(spanEl);
 
@@ -174,7 +172,6 @@ const renderNoteList = (notes) => {
   };
 
   if (jsonNotes.length === 0) {
-    console.log("in rendernotelist -> notes length is 0");
     noteListItems.push(createLi('No saved Notes', false));
   }
 
@@ -197,8 +194,8 @@ const getAndRenderNotes = () => {
   getNotes().then(renderNoteList);
 };
 
-  // newNoteBtn = document.querySelector('.new-note');
-  // noteList = document.querySelectorAll('.list-container .list-group');
+// newNoteBtn = document.querySelector('.new-note');
+// noteList = document.querySelectorAll('.list-container .list-group');
 
 if (window.location.pathname === '/notes.html') {
   saveNoteBtn.addEventListener('click', handleNoteSave);
