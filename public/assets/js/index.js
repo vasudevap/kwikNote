@@ -59,15 +59,20 @@ const deleteNote = (note) =>
     body: JSON.stringify(note),
   });// PVVVVVVVV: NEED TO ADD .then HERE TO DO SOMETHING W RES
 
-const renderActiveNote = () => {
+const renderActiveNote = (note) => {
 
   // when the note is clicked on in the sidebar
   // hide the save button since we're retrieving 
   // a saved note
   hide(saveNoteBtn);
 
-  noteTitle.value = "";
-  noteText.value = "";
+  if(note){
+    noteTitle.value = note.title;
+    noteText.value = note.text;
+  } else {
+    noteTitle.value = "";
+    noteText.value = "";
+  }
 
 };
 
@@ -80,7 +85,7 @@ const handleNoteSave = () => {
   saveNote(newNote).then(() => {
     console.log("in here now")
     getAndRenderNotes();
-    renderActiveNote();
+    renderActiveNote(null);
   });
 };
 
@@ -101,15 +106,9 @@ const handleNoteDelete = (e) => {
 
     console.log("past api call");
     getAndRenderNotes();
-    renderActiveNote();
+    renderActiveNote(null);
 
   });
-
-
-  // if (activeNote.id === noteId) {
-  // activeNote = {};
-  // }
-
 
 };
 
@@ -122,13 +121,13 @@ const handleNoteView = (e) => {
   console.log(e.target.parentElement);
 
   activeNote = JSON.parse(e.target.parentElement.getAttribute('data-note'));
-  renderActiveNote();
+  renderActiveNote(activeNote);
 };
 
 // Sets the activeNote to an empty object and allows the user to enter a new note
 const handleNewNoteView = (e) => {
   activeNote = {};
-  renderActiveNote();
+  renderActiveNote(null);
 };
 
 const handleRenderSaveBtn = () => {
