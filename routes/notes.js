@@ -48,17 +48,17 @@ notes.delete('/', (req, res) => {
       
       // console.log("going into the for"+dataFromDB[0]+" "+deleteNoteTitle+" "+deleteNoteText);
 
-      for (let i=0; i<dataFromDB.length; i++){
-        if ((deleteNoteTitle === dataFromDB[i].title) && (deleteNoteText===dataFromDB[i].text)) {
+      // for (let i=0; i<dataFromDB.length; i++){
+      //   if ((deleteNoteTitle === dataFromDB[i].title) && (deleteNoteText===dataFromDB[i].text)) {
 
-          //remove note
-          console.log("found it");
-          dataFromDB.splice(i,1);
-          writeToFile('./db/db.json', dataFromDB);
-        };
-        // console.log(i+": keep going: "+dataFromDB[i].title);
+      //     //remove note
+      //     console.log("found it");
+      //     dataFromDB.splice(i,1);
+      //     writeToFile('./db/db.json', dataFromDB);
+      //   };
+      //   // console.log(i+": keep going: "+dataFromDB[i].title);
 
-      }
+      // }
     });
   // console.log(req);
 

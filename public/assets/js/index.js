@@ -66,8 +66,8 @@ const renderActiveNote = () => {
   // a saved note
   hide(saveNoteBtn);
 
-  noteTitle.value = activeNote.title;
-  noteText.value = activeNote.text;
+  noteTitle.value = "";
+  noteText.value = "";
 
 };
 
@@ -99,9 +99,9 @@ const handleNoteDelete = (e) => {
   deleteNote(noteToDelete)
   .then(() => {
 
-    console.log("past api call");
-    // getAndRenderNotes();
-    // renderActiveNote();
+    // console.log("past api call");
+    getAndRenderNotes();
+    renderActiveNote();
 
   });
 
@@ -189,7 +189,6 @@ const renderNoteList = async (notes) => {
 
   jsonNotes.forEach((note) => {
     const li = createLi(note.title);
-
     li.dataset.note = JSON.stringify(note);
 
     noteListItems.push(li);
