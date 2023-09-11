@@ -50,12 +50,13 @@ const saveNote = (note) =>
     body: JSON.stringify(note),
   }); // .then for promise is handled by handleNoteSave
 
-const deleteNote = (id) =>
-  fetch(`api/notes/${id}`, {
+const deleteNote = (note) =>
+  fetch('api/notes/', {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
     },
+    body: JSON.stringify(note),
   });// PVVVVVVVV: NEED TO ADD .then HERE TO DO SOMETHING W RES
 
 const renderActiveNote = () => {
@@ -88,17 +89,34 @@ const handleNoteDelete = (e) => {
   // Prevents the click listener for the list from being called when the button inside of it is clicked
   e.stopPropagation();
 
-  const note = e.target;
-  const noteId = JSON.parse(note.parentElement.getAttribute('data-note')).id;
+  // get which note was selected for deletion
+  // FIX THIS... NEED TO GET PROPER ELEMENT
+  const noteEl = e.target;
+  // AND SET IT TO NOTE-EL SO THE FOLLOWING CAN
+  // START WORKING...
 
-  if (activeNote.id === noteId) {
-    activeNote = {};
-  }
+  console.log(e.target.parent);
+  
+  const noteToDelete = {
+    title: noteEl.title,
+    note: noteEl.text
+  };
 
-  deleteNote(noteId).then(() => {
-    getAndRenderNotes();
-    renderActiveNote();
-  });
+  console.log(noteToDelete);
+  // call api to delete the selected node
+  // by making the body as the node object
+  // deleteNote(noteToDelete).then(() => {
+  //   console.log("past api call");
+  //   getAndRenderNotes();
+  //   renderActiveNote();
+  // });
+  // const noteId = JSON.parse(note.parentElement.getAttribute('data-note')).id;
+
+  // if (activeNote.id === noteId) {
+  // activeNote = {};
+  // }
+
+
 };
 
 // Sets the activeNote and displays it
