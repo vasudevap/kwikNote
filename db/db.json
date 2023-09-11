@@ -4,71 +4,19 @@
         "text": "Test text"
     },
     {
-        "title": "Test 3 title",
-        "text": "Test 3 text"
+        "title": "Render",
+        "text": "works if it is for after save"
     },
     {
-        "title": "Test 2 title",
-        "text": "Test 2 text"
+        "title": "Note3",
+        "text": "Should save and render"
     },
     {
-        "title": "Test 8 title",
-        "text": "Test 8 text"
+        "title": "And undefined",
+        "text": "Is now fixed"
     },
     {
-        "title": "Test 48 title",
-        "text": "Test 8sd text"
-    },
-    {
-        "title": "",
-        "text": "thw save button"
-    },
-    {
-        "title": "n",
-        "text": ""
-    },
-    {
-        "title": "asdfsdfd",
-        "text": "asdsdfasdasdf"
-    },
-    {
-        "title": "e",
-        "text": "e"
-    },
-    {
-        "title": "d",
-        "text": "d"
-    },
-    {
-        "title": "g",
-        "text": "g"
-    },
-    {
-        "title": "xc",
-        "text": "c"
-    },
-    {
-        "title": "ffg",
-        "text": "ssddd"
-    },
-    {
-        "title": "dfdf",
-        "text": "dfdfdfff"
-    },
-    {
-        "title": "this note2",
-        "text": "is a new one for saving"
-    },
-    {
-        "title": "sdf",
-        "text": "ssdfff"
-    },
-    {
-        "title": "Test 8s title",
-        "text": "Test 8 texdddt"
-    },
-    {
-        "title": "Test 48 titles",
-        "text": "Test 8sd text"
+        "title": "notes seem",
+        "text": "to get added no problem"
     }
 ]

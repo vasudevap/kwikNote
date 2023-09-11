@@ -66,8 +66,8 @@ const renderActiveNote = () => {
   // a saved note
   hide(saveNoteBtn);
 
-  noteTitle.value = activeNote.title;
-  noteText.value = activeNote.text;
+  noteTitle.value = "";
+  noteText.value = "";
 
 };
 
@@ -90,27 +90,21 @@ const handleNoteDelete = (e) => {
   e.stopPropagation();
 
   // get which note was selected for deletion
-  // FIX THIS... NEED TO GET PROPER ELEMENT
-  const noteEl = e.target;
-  // AND SET IT TO NOTE-EL SO THE FOLLOWING CAN
-  // START WORKING...
-
-  console.log(e.target.parent);
-  
-  const noteToDelete = {
-    title: noteEl.title,
-    note: noteEl.text
-  };
+  const noteToDelete = (JSON.parse(e.target.parentElement.getAttribute("data-note")));
 
   console.log(noteToDelete);
+
   // call api to delete the selected node
   // by making the body as the node object
-  // deleteNote(noteToDelete).then(() => {
-  //   console.log("past api call");
-  //   getAndRenderNotes();
-  //   renderActiveNote();
-  // });
-  // const noteId = JSON.parse(note.parentElement.getAttribute('data-note')).id;
+  deleteNote(noteToDelete)
+  .then(() => {
+
+    console.log("past api call");
+    getAndRenderNotes();
+    renderActiveNote();
+
+  });
+
 
   // if (activeNote.id === noteId) {
   // activeNote = {};
@@ -195,7 +189,6 @@ const renderNoteList = async (notes) => {
 
   jsonNotes.forEach((note) => {
     const li = createLi(note.title);
-
     li.dataset.note = JSON.stringify(note);
 
     noteListItems.push(li);

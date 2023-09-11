@@ -1,7 +1,6 @@
 const notes = require('express').Router();
-const { readFromFile, readAndAppend } = require('../helpers/fsUtils');
+const { readFromFile, writeToFile, readAndAppend } = require('../helpers/fsUtils');
 
-// const { v4: uuidv4 } = require('uuid');
 console.log('routes-notes for all logic');
 
 // GET Route for retrieving all the notes
@@ -10,7 +9,7 @@ notes.get('/', (req, res) => {
   console.log("in notes.js GET for / -> /api/notes");
 
   readFromFile('./db/db.json')
-  .then((data) => res.json(JSON.parse(data)));
+    .then((data) => res.json(JSON.parse(data)));
 
 });
 
@@ -35,39 +34,33 @@ notes.post('/', (req, res) => {
 
 // DELETE Route for existing note 
 notes.delete('/', (req, res) => {
+
   console.log(req.body);
 
-  // destructure active note set for deletion
-  // const { del_title, del_text } = req.body;
+  const deleteNoteTitle = req.body.title;
+  const deleteNoteText = req.body.text;
 
-  // readFromFile('./db/db.json')
-  // .then((savedNotes) => {
+  readFromFile('./db/db.json')
+    .then((data) => {
 
-  //   for (let i=0; i<savedNotes.length; i++){
-  //     if (del_title === savedNotes[i].title && del_text === savedNotes[i].text) {
-  //       console.log(del_text+" <--> "+savedNotes[i].text);
-  //       console.log(del_text+" <--> "+savedNotes[i].text);
-  //       console.log("found element to delete");
-  //     }
-  //   }
-  //   console.log("out of the for loop");
+      dataFromDB= JSON.parse(data);
+      console.log(dataFromDB.length);
+      
+      for (let i=0; i<dataFromDB.length; i++){
+        if ((deleteNoteTitle === dataFromDB[i].title) && (deleteNoteText===dataFromDB[i].text)) {
 
-    
-  // });
-  
-  // console.log("out of the then clause");
+          //remove note
+          console.log("found it");
+          dataFromDB.splice(i,1);
+          writeToFile('./db/db.json', dataFromDB);
+          res.json(`Note deleted successfully`);
 
-  // if (req.body) {
-  //   const newNote = {
-  //     title,
-  //     text,
-  //   };
+        };
+      }
+    });
 
-  //   readAndAppend(newNote, './db/db.json');
-  //   res.json(`Note deleted successfully`);
-  // } else {
-  //   res.error('Error in deleting note');
-  // }
+  console.log("out of the for loop");
+
 });
 
 module.exports = notes;
