@@ -46,48 +46,21 @@ notes.delete('/', (req, res) => {
       dataFromDB= JSON.parse(data);
       console.log(dataFromDB.length);
       
-      // console.log("going into the for"+dataFromDB[0]+" "+deleteNoteTitle+" "+deleteNoteText);
+      for (let i=0; i<dataFromDB.length; i++){
+        if ((deleteNoteTitle === dataFromDB[i].title) && (deleteNoteText===dataFromDB[i].text)) {
 
-      // for (let i=0; i<dataFromDB.length; i++){
-      //   if ((deleteNoteTitle === dataFromDB[i].title) && (deleteNoteText===dataFromDB[i].text)) {
+          //remove note
+          console.log("found it");
+          dataFromDB.splice(i,1);
+          writeToFile('./db/db.json', dataFromDB);
+          res.json(`Note deleted successfully`);
 
-      //     //remove note
-      //     console.log("found it");
-      //     dataFromDB.splice(i,1);
-      //     writeToFile('./db/db.json', dataFromDB);
-      //   };
-      //   // console.log(i+": keep going: "+dataFromDB[i].title);
-
-      // }
+        };
+      }
     });
-  // console.log(req);
-
-  // for (let i=0; i<savedNotes.length; i++){
-  // if (del_title === savedNotes[i].title && del_text === savedNotes[i].text) {
-  // console.log(del_text+" <--> "+savedNotes[i].text);
-  // console.log(del_text+" <--> "+savedNotes[i].text);
-  // console.log("found element to delete");
-  // }
-  // }
 
   console.log("out of the for loop");
 
-
 });
-
-// console.log("out of the then clause");
-
-// if (req.body) {
-//   const newNote = {
-//     title,
-//     text,
-//   };
-
-//   readAndAppend(newNote, './db/db.json');
-//   res.json(`Note deleted successfully`);
-// } else {
-//   res.error('Error in deleting note');
-// }
-// });
 
 module.exports = notes;

@@ -99,7 +99,7 @@ const handleNoteDelete = (e) => {
   deleteNote(noteToDelete)
   .then(() => {
 
-    // console.log("past api call");
+    console.log("past api call");
     getAndRenderNotes();
     renderActiveNote();
 
