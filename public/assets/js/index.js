@@ -124,7 +124,6 @@ const handleRenderSaveBtn = () => {
   } else {
     hide(saveNoteBtn);
   }
-  console.log("handleRenderSaveBtn: "+(!noteTitle.value.trim() || !noteText.value.trim()));
 };
 
 // Render the list of note titles
