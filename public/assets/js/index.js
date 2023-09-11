@@ -75,12 +75,14 @@ const renderActiveNote = () => {
   }
 };
 
+// save the active note 
 const handleNoteSave = () => {
   const newNote = {
     title: noteTitle.value,
     text: noteText.value,
   };
   saveNote(newNote).then(() => {
+    console.log("in here now")
     getAndRenderNotes();
     renderActiveNote();
   });
@@ -124,6 +126,7 @@ const handleRenderSaveBtn = () => {
   } else {
     hide(saveNoteBtn);
   }
+
 };
 
 // Render the list of note titles
@@ -134,7 +137,7 @@ const renderNoteList = (notes) => {
 
   let jsonNotes = notes;
 
-  if (window.location.pathname === '/notes') {
+  if (window.location.pathname === '/notes.html') {
     noteList.forEach((el) => (el.innerHTML = ''));
   }
 
