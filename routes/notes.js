@@ -3,20 +3,17 @@ const { readFromFile, writeToFile, readAndAppend } = require('../helpers/fsUtils
 
 console.log('routes-notes for all logic');
 
-// GET Route for retrieving all the notes
+// GET Route 
+// retrievie all notes
+// from the file
 notes.get('/', (req, res) => {
-
-  console.log("in notes.js GET for / -> /api/notes");
-
-  readFromFile('./db/db.json')
-    .then((data) => res.json(JSON.parse(data)));
-
+  readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
 });
 
-// POST Route for a new note 
+// POST Route 
+// save the given note
+// to the file 
 notes.post('/', (req, res) => {
-  console.log(req.body);
-
   const { title, text } = req.body;
 
   if (req.body) {
