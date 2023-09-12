@@ -28,5 +28,10 @@
         "title": "Activate Note",
         "text": "To open the note and view the text, click the note from the left sidebar - the note opens up in the main note display and you can make any changes you wish - simply save the note when you're done and it will save as a new note.  You can delete the old note by clicking the red trash can symbol next to the note.",
         "noteId": "8c445e74-6c93-417b-94dc-b00e57d5bfd9"
+    },
+    {
+        "title": "To Save a Note",
+        "text": "Enter something in the note here and hit the save icon on the top right of the page",
+        "noteId": "e5b4eec9-1622-426f-8edb-66f005e5f531"
     }
 ]
