@@ -58,13 +58,14 @@ const saveNote = (note) =>
 // delete the note with given details
 // from the local db file
 // bu requesting the server 
-const deleteNote = (noteObj) =>
-  fetch(`api/notes/:${noteObj.noteId}`, {
+const deleteNote = (noteId) =>
+  fetch(`api/notes/:${noteId}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
     },
   });
+  
 
 // show the note with the given details
 // in the main/active note area of the page
@@ -112,21 +113,12 @@ const handleNoteDelete = (e) => {
   // being called when the button inside of it is clicked
   e.stopPropagation();
 
-  // console.log(JSON.parse(e.target.parentElement.getAttribute("data-note")).noteId);
-
-  // const { 
-  //   deleteNoteTitle, 
-  //   deleteNoteText, 
-  //   deleteNoteId 
-  // } = noteToDelete;
-  // console.log(noteToDelete);
-  // console.log(deleteNoteTitle+" "+deleteNoteText+" "+deleteNoteId);
-
+  const selectedNoteId = JSON.parse(e.target.parentElement.getAttribute("data-note")).noteId;
 
   // call the fcn to delete the selected note
   // by sending the note to it and waiting
   // for a response
-  deleteNote(JSON.parse(e.target.parentElement.getAttribute("data-note")))
+  deleteNote(selectedNoteId)
   .then(() => {
     // now refresh the list of notes
     getAndRenderNotes();

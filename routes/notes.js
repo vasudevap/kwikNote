@@ -30,18 +30,17 @@ notes.post('/', (req, res) => {
 });
 
 // DELETE Route for existing note 
-notes.delete('/:id', (req, res) => {
+notes.delete('/:id',  (req, res) => {
 
-  const deleteNoteWithThisId = req.params.id;
-
-  console.log(deleteNoteWithThisId);
+  // // get stored notes from db file
   readFromFile('./db/db.json')
     .then((data) => {
 
       dataFromDB= JSON.parse(data);
+      
       // search for note to delete
       for (let i=0; i<dataFromDB.length; i++){
-        if (deleteNoteWithThisId === dataFromDB[i].nodeId) {
+        if (req.params.id === (":"+dataFromDB[i].noteId)) {
           // remove note
           dataFromDB.splice(i,1);
           
