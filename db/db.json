@@ -1,26 +1,32 @@
 [
     {
         "title": "Active Note Default",
-        "text": "The main note starts out empty (containing place holder text) and can be edited."
+        "text": "The main note starts out empty (containing place holder text) and can be edited.",
+        "noteId": "628b509b-280e-4491-9d6c-13d6468a26d3"
     },
     {
         "title": "Saved Notes Rendering",
-        "text": "The sidebar contains notes that are retrieved from file and displayed in the order they were saved.  The oldest note is shown first."
+        "text": "The sidebar contains notes that are retrieved from file and displayed in the order they were saved.  The oldest note is shown first.",
+        "noteId": "36f8852a-4fae-422e-9c5e-3d940584c4e0"
     },
     {
         "title": "Save Button Rendering",
-        "text": "The save button on the top right hand of the page is only displayed when at least one letter has been typed into the note (title or text)."
+        "text": "The save button on the top right hand of the page is only displayed when at least one letter has been typed into the note (title or text).",
+        "noteId": "a8a098e7-9d5b-474a-b105-21eb494e85c2"
     },
     {
         "title": "Easy New Note",
-        "text": "Wish to start anew? Hit the + on the top right of the page!  Easy!"
+        "text": "Wish to start anew? Hit the + on the top right of the page!  Easy!",
+        "noteId": "399081a0-3543-432c-9543-93e9d66ed282"
     },
     {
         "title": "Delete Note",
-        "text": "Each note on the left sidebar has a red trash can next to it - hit it and the note is oblivion."
+        "text": "Each note on the left sidebar has a red trash can next to it - hit it and the note is oblivion!",
+        "noteId": "9fb02024-7803-425f-831a-55d2c5a7c4af"
     },
     {
         "title": "Activate Note",
-        "text": "To open the note and view the text, click the note from the left sidebar - the note opens up in the main note display and you can make any changes you wish - simply save the note when you're done and it will save as a new note.  You can delete the old note by clicking the red trash can symbol next to the note."
+        "text": "To open the note and view the text, click the note from the left sidebar - the note opens up in the main note display and you can make any changes you wish - simply save the note when you're done and it will save as a new note.  You can delete the old note by clicking the red trash can symbol next to the note.",
+        "noteId": "8c445e74-6c93-417b-94dc-b00e57d5bfd9"
     }
 ]
