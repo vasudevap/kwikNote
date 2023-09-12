@@ -1,7 +1,6 @@
 const notes = require('express').Router();
+const { v4: uuidv4 } = require('uuid');
 const { readFromFile, writeToFile, readAndAppend } = require('../helpers/fsUtils');
-
-console.log('routes-notes for all logic');
 
 // GET Route 
 // retrievie all notes
@@ -20,6 +19,7 @@ notes.post('/', (req, res) => {
     const newNote = {
       title,
       text,
+      noteId: uuidv4(),
     };
 
     readAndAppend(newNote, './db/db.json');
@@ -30,18 +30,18 @@ notes.post('/', (req, res) => {
 });
 
 // DELETE Route for existing note 
-notes.delete('/', (req, res) => {
+notes.delete('/:id', (req, res) => {
 
-  const deleteNoteTitle = req.body.title;
-  const deleteNoteText = req.body.text;
+  const deleteNoteWithThisId = req.params.id;
 
+  console.log(deleteNoteWithThisId);
   readFromFile('./db/db.json')
     .then((data) => {
 
       dataFromDB= JSON.parse(data);
       // search for note to delete
       for (let i=0; i<dataFromDB.length; i++){
-        if ((deleteNoteTitle === dataFromDB[i].title) && (deleteNoteText===dataFromDB[i].text)) {
+        if (deleteNoteWithThisId === dataFromDB[i].nodeId) {
           // remove note
           dataFromDB.splice(i,1);
           

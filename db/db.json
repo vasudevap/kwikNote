@@ -22,5 +22,20 @@
     {
         "title": "Activate Note",
         "text": "To open the note and view the text, click the note from the left sidebar - the note opens up in the main note display and you can make any changes you wish - simply save the note when you're done and it will save as a new note.  You can delete the old note by clicking the red trash can symbol next to the note."
+    },
+    {
+        "title": "Uuid Test",
+        "text": "this note should contain a uuid",
+        "nodeId": "8416130e-cafc-4bc2-8e73-fe17b230011a"
+    },
+    {
+        "title": "Indeed",
+        "text": "Uuid creation works well",
+        "nodeId": "1f7f4683-b05c-4213-8150-7b0a69d69739"
+    },
+    {
+        "title": "To Delete Uuid",
+        "text": "Now to test the deletion of Uuid - this here is the creation now.",
+        "nodeId": "199c0654-cf27-4fc1-a8d9-f6e445de1d5d"
     }
 ]
