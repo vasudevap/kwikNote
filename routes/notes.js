@@ -32,8 +32,6 @@ notes.post('/', (req, res) => {
 // DELETE Route for existing note 
 notes.delete('/', (req, res) => {
 
-  console.log(req.body);
-
   const deleteNoteTitle = req.body.title;
   const deleteNoteText = req.body.text;
 
@@ -41,23 +39,18 @@ notes.delete('/', (req, res) => {
     .then((data) => {
 
       dataFromDB= JSON.parse(data);
-      console.log(dataFromDB.length);
-      
+      // search for note to delete
       for (let i=0; i<dataFromDB.length; i++){
         if ((deleteNoteTitle === dataFromDB[i].title) && (deleteNoteText===dataFromDB[i].text)) {
-
-          //remove note
-          console.log("found it");
+          // remove note
           dataFromDB.splice(i,1);
+          
+          // write all other notes back into the file
           writeToFile('./db/db.json', dataFromDB);
           res.json(`Note deleted successfully`);
-
         };
       }
     });
-
-  console.log("out of the for loop");
-
 });
 
 module.exports = notes;

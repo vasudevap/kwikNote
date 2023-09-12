@@ -5,53 +5,31 @@ const express = require('express');
 // Import built-in Node.js package 'path' to resolve path of files that are located on the server
 const path = require('path');
 
-// Define notes 
+// Define notes API where we will process HTTP methods
 const api = require('./routes/notes');
 
 // Initialize an instance of Express.js
 const app = express();
 
-// Middleware for parsing application /json and urlencoded data
+// Activate MIDDLEWARE for parsing application /json and urlencoded data
 app.use(express.json());
 // app.use(express.urlencoded({ extended: true }));
 
-// Specify on which port the Express.js server will run
+// Port for Express.js server to listen on
 const PORT = 3001;
 
 // SETUP MIDDLEWARE - API ROUTE
-// Import route to API
-// const api = require('./routes/index');
-// route any calls to the '/api' resource to index.js
+// FIRST route any calls to the '/api/notes' resource to routes/notes
 app.use('/api/notes', api);
 
 // SETUP STATIC MIDDLEWARE - PUBLIC FOLDER
-// route any calls not to the '/api' resource to public folder
+// SECOND route all other calls that match
+// to public folder - i.e. index.html and notes.html
 app.use(express.static('public'));
 
-// SETUP GET ROUTES
-// Create Express.js GET routes for default '/' and '/notes' endpoints
-app.get('/', (req, res) => {
-
-    // log request to console
-    console.info(`In get home / ${req.method} to ${req.url}`);
-
-    res.sendFile(path.join(__dirname, 'public/index.html'));
-});
-
-// app.get('/notes', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'public/notes.html'));
-//     // log request to console
-//     console.info(`In get just notes ${req.method} to ${req.url}`);
-
-// });
-
-// Create Express.js GET routes for '*' endpoint (any not explicitly defined above)
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/404.html'));
-    // log request to console
-    console.info(`In get * ${req.method} to ${req.url}`);
-
-});
+// Create Express.js GET routes for '*' endpoint
+// catch all for everything not understandable
+app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'public/404.html')));
 
 //
 // PORT LISTENER
