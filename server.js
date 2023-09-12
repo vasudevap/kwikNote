@@ -27,9 +27,12 @@ app.use('/api/notes', api);
 // to public folder - i.e. index.html and notes.html
 app.use(express.static('public'));
 
+
+app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, 'public/notes.html')));
+
 // Create Express.js GET routes for '*' endpoint
 // catch all for everything not understandable
-app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'public/404.html')));
+app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'public/index.html')));
 
 //
 // PORT LISTENER
