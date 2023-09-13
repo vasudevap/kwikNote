@@ -85,7 +85,7 @@ The source for the application is available at my gitHub repo: [kwikNote GitHub 
 
 ## Live Running App
 
-The running application for immediate use online can be found at: 
+The running application for immediate use online can be found at: [kwikNote App LIVE Online (at Heroku)](https://kwiknote-9d0997e988ee.herokuapp.com/)
 
 # CONTRIBUTING
 More the merrier!  Join me in my quest to deliver the coders of the world from painful note-taking systems!  Contact me on my gitHub!
