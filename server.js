@@ -16,7 +16,7 @@ app.use(express.json());
 // app.use(express.urlencoded({ extended: true }));
 
 // Port for Express.js server to listen on
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 // SETUP MIDDLEWARE - API ROUTE
 // FIRST route any calls to the '/api/notes' resource to routes/notes
